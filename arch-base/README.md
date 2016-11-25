@@ -2,7 +2,7 @@
 
 > from [mkimage-arch.sh](https://github.com/docker/docker/blob/master/contrib/mkimage-arch.sh)
 
-base/archlinux
+meesong/arch-base
 
 Archlinux 2016.11.25 Minimal arch installation
 
