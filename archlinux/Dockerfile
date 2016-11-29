@@ -4,6 +4,8 @@ FROM meesong/arch-base:latest
 
 MAINTAINER MeeSong <meesong@outlook.com>
 
+ENV LANG=C.UTF-8
+
 # Pacman config
 COPY pacman.conf /etc/pacman.conf
 COPY mirrorlist /etc/pacman.d/mirrorlist
