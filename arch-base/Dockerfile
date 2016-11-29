@@ -1,4 +1,4 @@
-#meesong/arch-base
+# meesong/arch-base
 
 FROM scratch
 MAINTAINER MeeSong <meesong@outlook.com>

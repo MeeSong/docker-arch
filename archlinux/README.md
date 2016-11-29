@@ -9,9 +9,11 @@ Package list:
 * yaourt
 * vim
 * wget
+* curl
 * git
 * openssh
 * zsh
+* gosu
 
 Configuration items:
 

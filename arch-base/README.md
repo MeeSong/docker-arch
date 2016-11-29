@@ -20,5 +20,5 @@ $ ./mkimage-arch.sh
 For slow network connections or CPU, the build timeout can be extended:
 
 ```bash
-$ sed -i 's/timeout 60/timeout 120/' mkimage-arch.sh
+$ sed -i 's/EXPECT_TIMEOUT=120/EXPECT_TIMEOUT=240/' mkimage-arch.sh
 ```

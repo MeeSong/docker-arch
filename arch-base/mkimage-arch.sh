@@ -63,7 +63,7 @@ case "$arch" in
 		sed "s/Architecture = armv/Architecture = armv${version}h/g" './mkimage-archarm-pacman.conf' > "${PACMAN_CONF}"
 		PACMAN_MIRRORLIST='Server = http://mirror.archlinuxarm.org/$arch/$repo'
 		PACMAN_EXTRA_PKGS='archlinuxarm-keyring'
-		EXPECT_TIMEOUT=1800 # Most armv* based devices can be very slow (e.g. RPiv1)
+		EXPECT_TIMEOUT=120 # Most armv* based devices can be very slow (e.g. RPiv1)
 		ARCH_KEYRING=archlinuxarm
 		DOCKER_IMAGE_NAME="armv${version}h/archlinux"
 		;;
@@ -71,7 +71,7 @@ case "$arch" in
 		PACMAN_CONF='./mkimage-arch-pacman.conf'
 		PACMAN_MIRRORLIST='Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch'
 		PACMAN_EXTRA_PKGS=''
-		EXPECT_TIMEOUT=60
+		EXPECT_TIMEOUT=120
 		ARCH_KEYRING=archlinux
 		DOCKER_IMAGE_NAME=arch-base
 		;;
@@ -99,6 +99,7 @@ EOF
 arch-chroot $ROOTFS /bin/sh -c 'rm -r /usr/share/man/*'
 arch-chroot $ROOTFS /bin/sh -c "haveged -w 1024; pacman-key --init; pkill haveged; pacman -Rs --noconfirm haveged; pacman-key --populate $ARCH_KEYRING; pkill gpg-agent"
 arch-chroot $ROOTFS /bin/sh -c "ln -s /usr/share/zoneinfo/UTC /etc/localtime"
+echo 'LANG=en_US.UTF-8' > $ROOTFS/etc/locale.conf
 echo -e 'en_US.UTF-8 UTF-8\nzh_CN.UTF-8 UTF-8\nzh_TW.UTF-8 UTF-8' > $ROOTFS/etc/locale.gen
 arch-chroot $ROOTFS locale-gen
 arch-chroot $ROOTFS /bin/sh -c 'echo $PACMAN_MIRRORLIST > /etc/pacman.d/mirrorlist'
