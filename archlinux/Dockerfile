@@ -12,7 +12,7 @@ COPY mirrorlist /etc/pacman.d/mirrorlist
 RUN chmod 644 /etc/pacman.conf /etc/pacman.d/mirrorlist
 
 # Time zone
-ENV TZ Asia/Shanghai
+ENV TZ=Asia/Shanghai
 RUN set -x \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone
@@ -26,8 +26,8 @@ RUN set -x \
     && pacman -Scc --noconfirm
 
 # gosu
-ENV GOSU_VERSION 1.10
-ENV ARCHITECTURE amd64
+ENV GOSU_VERSION=1.10
+ENV ARCHITECTURE=amd64
 RUN set -x \
     && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$ARCHITECTURE" \
     && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$ARCHITECTURE.asc" \
