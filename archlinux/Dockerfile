@@ -14,7 +14,7 @@ RUN chmod 644 /etc/pacman.conf /etc/pacman.d/mirrorlist
 # Time zone
 ENV TZ=Asia/Shanghai
 RUN set -x \
-    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && sh -c 'ln -snf /usr/share/zoneinfo/$TZ /etc/localtime' \
     && echo $TZ > /etc/timezone
 
 # Packages
