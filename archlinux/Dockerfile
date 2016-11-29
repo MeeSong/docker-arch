@@ -9,7 +9,7 @@ ENV LANG=C.UTF-8
 # Pacman config
 COPY pacman.conf /etc/pacman.conf
 COPY mirrorlist /etc/pacman.d/mirrorlist
-RUN chmod 644 /etc/pacman.conf /etc/pacman.d/mirrorlist
+RUN sh -c 'chmod 644 /etc/pacman.conf /etc/pacman.d/mirrorlist'
 
 # Time zone
 ENV TZ=Asia/Shanghai
