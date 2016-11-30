@@ -12,10 +12,10 @@ COPY mirrorlist /etc/pacman.d/mirrorlist
 RUN chmod 644 /etc/pacman.conf /etc/pacman.d/mirrorlist
 
 # Time zone
-ENV TZ=Asia\/Shanghai
+ENV TZ=Asia/Shanghai
 RUN set -x \
-    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
-    && echo $TZ > /etc/timezone
+    && sh -c "$(ln -snf /usr/share/zoneinfo/$TZ /etc/localtime)" \
+    && sh -c "$(echo $TZ > /etc/timezone)"
 
 # Packages
 RUN set -x \
