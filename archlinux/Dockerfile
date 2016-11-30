@@ -6,16 +6,16 @@ MAINTAINER MeeSong <meesong@outlook.com>
 
 ENV LANG=C.UTF-8
 
+# Time zone
+ENV TZ=Asia/Shanghai
+RUN set -x \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo "$TZ" > /etc/timezone
+
 # Pacman config
 COPY pacman.conf /etc/pacman.conf
 COPY mirrorlist /etc/pacman.d/mirrorlist
 RUN chmod 644 /etc/pacman.conf /etc/pacman.d/mirrorlist
-
-# Time zone
-# ENV TZ=Asia/Shanghai
-RUN set -x \
-    && ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone
 
 # Packages
 RUN set -x \
