@@ -8,8 +8,7 @@ ENV LANG=C.UTF-8
 
 # Time zone
 ENV TZ=Asia/Shanghai
-RUN set -x \
-    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo "$TZ" > /etc/timezone
 
 # Pacman config
