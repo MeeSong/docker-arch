@@ -6,11 +6,6 @@ MAINTAINER MeeSong <meesong@outlook.com>
 
 ENV LANG=C.UTF-8
 
-# Time zone
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
-    && echo "$TZ" > /etc/timezone
-
 # Pacman config
 COPY pacman.conf /etc/pacman.conf
 COPY mirrorlist /etc/pacman.d/mirrorlist
@@ -36,6 +31,11 @@ RUN set -x \
     && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true
+
+# Time zone
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo "$TZ" > /etc/timezone
 
 WORKDIR /root
 ENTRYPOINT ["/bin/zsh"]
